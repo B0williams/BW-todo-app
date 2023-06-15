@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import styles from "@/styles/Home.module.css";
 import { useState } from "react";
 import { AnimatePresence, MotionConfig } from "framer-motion";
-import TaskInput from "@/components/Taskinput";
+import TaskInput from "../components/Taskinput";
 
 
 export default function Home() {
@@ -23,7 +23,7 @@ export default function Home() {
           <h1>Todo Baeden Williams</h1>
         </div>
         <div className={styles.Input}>
-          <TaskInput peopleViewingThePage={["Baeden", "Shannon", "Trae"]} numberOfGreeting={3} greeting={""}/>
+          <TaskInput></TaskInput>
         </div> 
         <div className={styles.ItemsContainer}>
         </div>
