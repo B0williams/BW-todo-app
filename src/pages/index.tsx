@@ -6,9 +6,22 @@ import styles from "@/styles/Home.module.css";
 import { useState } from "react";
 import { AnimatePresence, MotionConfig } from "framer-motion";
 import TaskInput from "../components/Taskinput";
-
+import TodoItem from "@/components/TodoItem";
+let defaultTodoItems: TodoItem[] = [
+  {
+    Id: "First",
+    Task: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam faucibus faucibus nulla, ut molestie enim pellentesque nec. Nam pellentesque varius libero, a placerat nunc imperdiet a. Proin vestibulum purus vel purus pellentesque consectetur ac i",
+    completed: false,
+  },
+  {
+    Id: "Second",
+    Task: "Nulla at feugiat sapien. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean bibendum urna diam, eu elementum ex scelerisque ac. Mauris sodales quam vel nisi molestie, quis cursus ligula fermentum. Nulla vel tellus eget ante mollis suscipit nec vel erat. ",
+    completed: false,
+  },
+];
 
 export default function Home() {
+  const [todoItem, setTodoItems] = useState<TodoItem[]>(defaultTodoItems);
 
   return (
     <>
@@ -23,9 +36,31 @@ export default function Home() {
           <h1>Todo Baeden Williams</h1>
         </div>
         <div className={styles.Input}>
-          <TaskInput></TaskInput>
+        <TaskInput createItem={function (todoItem: TodoItem): void {
+            throw new Error("Function not implemented.");
+          } }></TaskInput>
         </div> 
         <div className={styles.ItemsContainer}>
+        <AnimatePresence mode="popLayout">
+            {todoItem.map((item) => (
+              <motion.div
+                layout
+                layoutScroll
+                key={item.Id}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+               <TodoItem item={item} deleteItem={function (id: string): void {
+                  throw new Error("Function not implemented.");
+                } } completeItem={function (id: string): void {
+                  throw new Error("Function not implemented.");
+                } }>
+                
+               </TodoItem>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
       </main>
     </>
